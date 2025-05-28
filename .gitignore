@@ -1,0 +1,54 @@
+# Ignorer les fichiers système
+.DS_Store
+Thumbs.db
+
+# Ignorer les fichiers de logs
+*.log
+logs/
+*.csv
+
+# Ignorer les fichiers de cache
+cache/
+*.cache
+
+# Ignorer les fichiers temporaires
+*.tmp
+*.temp
+
+# Ignorer les fichiers de configuration sensibles
+.env
+.env.local
+.env.*.local
+
+# Ignorer les dossiers de sessions, uploads ou fichiers générés
+sessions/
+uploads/
+storage/
+
+# Ignorer les dépendances de Composer
+/vendor/
+
+# Ignorer les fichiers de base de données SQLite
+*.sqlite
+*.sqlite3
+*.db
+
+# Ignorer les fichiers de sauvegarde ou temporaires créés par les éditeurs
+*.bak
+*.swp
+*.swo
+*.~ 
+*.orig
+
+# Ignorer les fichiers de tests ou outils de debug
+phpunit.xml
+phpunit.xml.dist
+phpcs.xml
+phpcs.xml.dist
+coverage/
+
+# Pour XAMPP ou autres serveurs locaux
+*.pem
+*.key
+*.crt
+*.p12

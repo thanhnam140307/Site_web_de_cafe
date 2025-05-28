@@ -1,0 +1,54 @@
+body {
+    background-color: rgb(154, 202, 241);
+}
+
+.text-center {
+    margin-top: 270px;
+}
+
+
+label,
+.bold, h1, h2 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 75px;
+}
+
+.marginCheck {
+    margin-left: 1px;
+    margin-bottom: 1px;
+}
+
+input,
+select {
+    margin-bottom: 15px;
+}
+
+.selectColor {
+    background-color: rgb(22, 196, 235);
+}
+
+
+.imageGrain {
+    width: 150px;
+}
+
+.gap-20px {
+    gap: 20px; 
+}
+
+.gap-150px {
+    gap: 150px; 
+}
+
+.rangeValuePart2 {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
+input[type='checkbox'], input[type='radio']  {
+    accent-color: #4b83e6;
+}
