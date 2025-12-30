@@ -2,7 +2,7 @@
 require_once "validation.php";
 session_destroy();
 ?>
-
+<!-- Auteur : Thanh Nam Nguyen -->
 <!DOCTYPE html>
 <html lang="fr">
 

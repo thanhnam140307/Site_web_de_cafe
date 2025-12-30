@@ -1,5 +1,6 @@
 <?php
 session_start();
+$tabFormat = array("Très petit", "Petit", "Moyen", "Grand", "Très grand");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Partie validation
@@ -19,26 +20,6 @@ function erreurNomClient()
             <p class="m-0 bold">Erreur :</p>
             <p class="m-0 bold">Le nom est invalide</p>
          </div>';
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Partie conversion
-
-//Convertir les valeurs du format en nom
-function format($format)
-{
-    switch ($format) {
-        case 1:
-            return "Très petit";
-        case 2:
-            return "Petit";
-        case 3:
-            return "Moyen";
-        case 4:
-            return "Grand";
-        case 5:
-            return "Très grand";
-    }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,37 +98,49 @@ function sessionExtra($nom)
 //La maquette du café moulu
 function moulu()
 {
-    echo
-    '<fieldset>
-        <div class="form-group">
-            <label for="inputLait" class="form-label">Laits :</label>
-            <div class="d-flex gap-20px">
-                <input id="inputLait" type="range" class="custom-range" min="0" max="5" name="laits" value="' . sessionRange("laits") . '">
-                <p id="valueLait" class="bg-white rounded rangeValuePart2"></p>
-            </div>
-        </div>
+    $tabRange = array(
+        array(
+            "inputId" => "inputLait",
+            "valueId" => "valueLait",
+            "label" => "Laits",
+            "max" => "5",
+            "name" => "laits"
+        ),
+        array(
+            "inputId" => "inputSucres",
+            "valueId" => "valueSucres",
+            "label" => "Sucres",
+            "max" => "3",
+            "name" => "sucres"
+        ),
+        array(
+            "inputId" => "inputExpresso",
+            "valueId" => "valueExpresso",
+            "label" => "Doses d'expresso",
+            "max" => "3",
+            "name" => "doseExpresso"
+        )
+    );
 
-        <div class="form-group">
-            <label for="inputSucres" class="form-label">Sucres :</label>
+    echo '<fieldset>';
+    foreach ($tabRange as $array) {
+        echo
+        '<div class="form-group">
+            <label for="' . $array["inputId"] . '" class="form-label">' . $array["label"] . ' :</label>
             <div class="d-flex gap-20px">
-                <input id="inputSucres" type="range" class="custom-range" min="0" max="3" name="sucres" value="' . sessionRange('sucres', 'Café moulu') . '">
-                <p id="valueSucres" class="bg-white rounded rangeValuePart2"></p>
+                <input id="' . $array["inputId"] . '" type="range" class="custom-range" min="0" max="' . $array["max"] . '" name="' . $array["name"] . '" value="' . ($array["name"] == "sucres" ? sessionRange($array["name"], 'Café moulu') : sessionRange($array["name"])) . '">
+                <p id="' . $array["valueId"] . '" class="bg-white rounded rangeValuePart2"></p>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label for="inputExpresso" class="form-label">Doses d\'expresso :</label>
-            <div class="d-flex gap-20px">
-                <input id="inputExpresso" type="range" class="custom-range" min="0" max="3" name="doseExpresso" value="' . sessionRange("doseExpresso") . '">
-                <p id="valueExpresso" class="bg-white rounded rangeValuePart2"></p>
-            </div>
-        </div>
-    </fieldset>';
+        </div>';
+    }
+    echo '</fieldset>';
 }
 
 //La maquette de l'expressos
 function expressos()
 {
+    $tableauExtra = array("Aucun", "baileys", "tia maria");
+
     echo '<fieldset>
             <div>
                 <label for="inputSucres" class="form-label">Sucres :</label>
@@ -170,11 +163,13 @@ function expressos()
         <fieldset>
             <div class="form-group">
                 <label for="extra" class="form-label">Extra :</label>
-                <select class="form-control text-dark border-0 selectColor" id="extra" name="extra">
-                    <option value="Aucun" ' . sessionExtra("Aucun") . '>Aucun </option>
-                    <option value="baileys" ' . sessionExtra("baileys") . '>Baileys</option>
-                    <option value="tia maria" ' . sessionExtra("tia maria") . '>Tia Maria</option>
-                </select>
+                <select class="form-control text-dark border-0 selectColor" id="extra" name="extra">';
+
+    for ($i = 0; $i < sizeof($tableauExtra); $i++) {
+        echo '<option value="' . $tableauExtra[$i] . '" ' . sessionExtra($tableauExtra[$i]) . '>' . ucwords($tableauExtra[$i]) . '</option>';
+    }
+
+    echo '      </select>
             </div>
         </fieldset>';
 }
@@ -203,6 +198,56 @@ function cappucinos()
                 <label class="form-check-label" for="laitMousse">Lait moussé</label>
             </div>
         </fieldset>';
+}
+
+function ecrireFormat()
+{
+    global $tabFormat;
+
+    for ($i = 0; $i < sizeof($tabFormat); $i++) {
+        echo '<span>' . $tabFormat[$i] . '</span>';
+    }
+}
+
+// Écrire les options de breuvage dans part1.php
+function ecrireOptionsDeBreuvage()
+{
+    $tabBreuvage = array("Café moulu", "Expresso", "Cappuccino");
+
+    for ($i = 0; $i < sizeof($tabBreuvage); $i++) {
+        echo '<option ' . breuvageSelecte($tabBreuvage[$i], "breuvage") . ' value="' . $tabBreuvage[$i] . '">' . $tabBreuvage[$i] . '</option>';
+    }
+}
+
+// Écrire les types de grain dans part2.php
+function ecrireTypeDeGrain()
+{
+    $tabGrain = array(
+        array(
+            "name" => "arabica",
+            "image" => "img/arabica.webp"
+        ),
+        array(
+            "name" => "robusta",
+            "image" => "img/robusta.webp"
+        ),
+        array(
+            "name" => "kopi luwak",
+            "image" => "img/kopi-luwak.webp"
+        )
+    );
+
+    foreach ($tabGrain as $array) {
+        echo '
+            <div class="col-12 col-md-4 d-flex flex-column align-items-center mb-4">
+                <img class="imageGrain mb-2" src="' . $array["image"] . '" alt="' . $array["name"] . '">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="grain" id="' . $array["name"] . '" value="' . ucwords($array["name"]) . '" 
+                        ' . grainSelectione($_SESSION['breuvage'], ucwords($array["name"])) . '>
+                    <label class="form-check-label" for="' . $array["name"] . '">' . ucwords($array["name"]) . '</label>
+                </div>
+             </div>';
+    }
 }
 
 //Remplir la page confirm.php
@@ -243,9 +288,11 @@ function maquetteConfirm()
 //Enregistre les données de part1.php dans des sessions
 function enregisterPart1($breuvage, $format)
 {
+    global $tabFormat;
+
     $_SESSION['breuvage'] = $breuvage;
     $_SESSION['formatEnNombre'] = $format;
-    $_SESSION['format'] = format($format);
+    $_SESSION['format'] = $tabFormat[$format - 1];
 }
 
 //Enregistre les données de part2.php dans des sessions
@@ -279,12 +326,16 @@ function enregisterPart2()
 function breuvageSelecte($nomBreuvage)
 {
     if (isset($_SESSION['breuvage']) && $nomBreuvage ==  $_SESSION['breuvage'])
-        echo "selected";
+        return "selected";
+
+    return "";
 }
 
 //Présélectioner le grain si il est déjà enregistré dans $_SESSION[$breuvage]['grain'] et présélectioner "Robusta" si non
 function grainSelectione($breuvage, $grain)
 {
     if ((!isset($_SESSION[$breuvage]['grain']) && $grain == "Robusta") || (isset($_SESSION[$breuvage]['grain']) && $grain == $_SESSION[$breuvage]['grain']))
-        echo "checked";
+        return "checked";
+
+    return "";
 }

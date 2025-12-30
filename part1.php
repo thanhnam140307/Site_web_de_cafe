@@ -44,9 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST[$client]) && estValide
             <div class="form-group">
                 <label for="breuvage" class="form-label">Breuvage</label>
                 <select class="form-control text-dark border-0 selectColor" id="breuvage" name="breuvage">
-                    <option <?php breuvageSelecte("Café moulu", $breuvage) ?> value="Café moulu">Café moulu</option>
-                    <option <?php breuvageSelecte("Expresso", $breuvage) ?> value="Expresso">Expresso</option>
-                    <option <?php breuvageSelecte("Cappuccino", $breuvage) ?> value="Cappuccino">Cappuccino</option>
+                    <?php ecrireOptionsDeBreuvage() ?>
                 </select>
             </div>
 
@@ -55,11 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST[$client]) && estValide
                 <input type="range" class="custom-range" min="1" max="5" id="format" name="format"
                     value="<?php if (isset($_SESSION['formatEnNombre'])) echo $_SESSION['formatEnNombre']; ?>">
                 <div class="d-flex justify-content-between">
-                    <span>Très petit</span>
-                    <span>Petit</span>
-                    <span>Moyen</span>
-                    <span>Grand</span>
-                    <span>Très grand</span>
+                    <?php ecrireFormat() ?>
                 </div>
             </div>
 
