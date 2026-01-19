@@ -64,8 +64,8 @@ accueil.php
 part1.php
 ![index](/images.docs/part1.jpeg)
 
-Note that part2.php change according to the selected coffee
-Notez que part2.php change selon le café sélectionné
+**Note:** `part2.php` changes depending on the selected coffee.  
+*(Remarque : part2.php change selon le café sélectionné)*
 ![index](/images.docs/part2.jpeg)  
 
 confirm.php
