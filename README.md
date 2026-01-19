@@ -59,14 +59,14 @@ Enjoy exploring my code! 🚀
 ### 🙌 Details
 
 accueil.php
-![index](/images.docs/accueil.jpeg)  
+![accueil](/images.docs/accueil.jpeg)  
 
 part1.php
-![index](/images.docs/part1.jpeg)
+![part1](/images.docs/part1.jpeg)
 
 **Note:** `part2.php` changes depending on the selected coffee.  
 *(Remarque : part2.php change selon le café sélectionné)*
-![index](/images.docs/part2.jpeg)  
+![part2](/images.docs/part2.jpeg)  
 
 confirm.php
-![index](/images.docs/confirm.jpeg)
+![confirm](/images.docs/confirm.jpeg)
